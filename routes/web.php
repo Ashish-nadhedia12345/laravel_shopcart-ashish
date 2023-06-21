@@ -23,5 +23,4 @@ Route::get('/home',[CategoryController::class,'index'])->name('home');
 Auth::routes();
 
 Route::get('/category/{category}', [CategoryController::class, 'index'])->name('category.index');
-Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/page/{page}', [PageController::class, 'index'])->name('page.index');
