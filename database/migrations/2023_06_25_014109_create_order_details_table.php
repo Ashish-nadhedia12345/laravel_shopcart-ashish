@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_details', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('order_id')->references('id')->on('orders')->cascadeOnDelete();
-            $table->foreignId('product_id')->references('id')->on('products')->cascadeOnDelete();
-            $table->string('title');
-            $table->integer('price');
-            $table->integer('qty'); 
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('order_details')) {
+            Schema::create('order_details', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('order_id')->references('id')->on('orders')->cascadeOnDelete();
+                $table->foreignId('product_id')->references('id')->on('products')->cascadeOnDelete();
+                $table->string('title');
+                $table->integer('price');
+                $table->integer('qty');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

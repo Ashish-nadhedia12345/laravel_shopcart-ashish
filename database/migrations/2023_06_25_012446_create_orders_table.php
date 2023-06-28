@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreignId('address_id')->references('id')->on('addresses')->cascadeOnDelete();
-            $table->integer('amount');
-            $table->string('payment_status')->default('unpaid');
-            $table->string('order_status')->default('inprogress'); 
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('orders')) {
+            Schema::create('orders', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
+                $table->foreignId('address_id')->references('id')->on('addresses')->cascadeOnDelete();
+                $table->integer('amount');
+                $table->string('payment_status')->default('unpaid');
+                $table->string('order_status')->default('inprogress');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
