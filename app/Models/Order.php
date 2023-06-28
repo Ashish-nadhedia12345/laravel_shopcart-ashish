@@ -80,6 +80,7 @@ class Order extends Model
                 $orderDetail->order_id = $orderID;
                 $orderDetail->title = $product->title;
                 $orderDetail->qty = $row->qty;
+                $orderDetail->product_id = $row->product_id;
                 $orderDetail->price = $row->price;
                 $orderDetail->save();
             }
