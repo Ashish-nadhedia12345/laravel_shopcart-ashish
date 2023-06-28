@@ -15,7 +15,7 @@
                     </div>
                     <div class="text-center py-4">
                         <a class="h6 text-decoration-none text-truncate"
-                            href="{{ route('page.index', $product->id) }}">{{ $product->title }}</a>
+                            href="{{ route('product.index', $product->id) }}">{{ $product->title }}</a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <h5>${{ $product->price }}</h5>
                             <h6 class="text-muted ml-2"><del></del></h6>

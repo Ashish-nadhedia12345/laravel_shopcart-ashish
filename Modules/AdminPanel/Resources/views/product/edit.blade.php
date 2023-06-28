@@ -1,8 +1,8 @@
 @extends('adminpanel::layouts.master')
 @section('content')
     <div class="container-fluid">
-        <h1>Edit Category : {{$page->title}}</h1>
-        <form action="{{ route('admin.category.edit',$page->id) }}" method="post" enctype="multipart/form-data">
+        <h1>Edit Category : {{$product->title}}</h1>
+        <form action="{{ route('admin.product.edit',$product->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('patch')
             @include('adminpanel::layouts.form-errors')
@@ -11,24 +11,24 @@
                     <td>
                         <select name="cat_id" id="" class="form-control">
                             @foreach ($category as $row )
-                            <option  {{ $row->id == $page->cat_id ? 'selected="selected"' : '' }} value="{{$row->id}}">{{$row->title}}</option>     
+                            <option  {{ $row->id == $product->cat_id ? 'selected="selected"' : '' }} value="{{$row->id}}">{{$row->title}}</option>     
                             @endforeach
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" name="title" placeholder="title" class="form-control" value="{{$page->title}}">
+                        <input type="text" name="title" placeholder="title" class="form-control" value="{{$product->title}}">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <textarea name="description" id="" cols="30" rows="10" class="form-control" placeholder="description">{{$page->description}}</textarea>
+                        <textarea name="description" id="" cols="30" rows="10" class="form-control" placeholder="description">{{$product->description}}</textarea>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="number" name="price" min="0" placeholder="price" class="form-control" value="{{$page->price}}">
+                        <input type="number" name="price" min="0" placeholder="price" class="form-control" value="{{$product->price}}">
                     </td>
                 </tr>
                 <tr>

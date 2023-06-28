@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Page extends Model
+class Product extends Model
 {
     use HasFactory;
     protected $fillable= ['cat_id','title','description','image'];

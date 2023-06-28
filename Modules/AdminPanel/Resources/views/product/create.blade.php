@@ -1,8 +1,8 @@
 @extends('adminpanel::layouts.master')
 @section('content')
     <div class="container-fluid">
-        <h1>Create Page</h1>
-        <form action="{{ route('admin.page.create') }}" method="post" enctype="multipart/form-data">
+        <h1>Create Product</h1>
+        <form action="{{ route('admin.product.create') }}" method="post" enctype="multipart/form-data">
             @csrf
             @include('adminpanel::layouts.form-errors')
             <table class="table table-bordered">

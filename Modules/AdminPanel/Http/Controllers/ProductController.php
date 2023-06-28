@@ -4,6 +4,7 @@ namespace Modules\AdminPanel\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Page;
+use App\Models\Product;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -16,8 +17,8 @@ class PageController extends Controller
      */
     public function index()
     {
-        $page = Page::all();
-        return view('adminpanel::page.index',['page'=> $page]);
+        $product = Product::all();
+        return view('adminpanel::product.index',['product'=> $product]);
     }
 
     /**
@@ -27,7 +28,7 @@ class PageController extends Controller
     public function create()
     {
         $category= Category::all();
-        return view('adminpanel::page.create',['category'=>$category]);
+        return view('adminpanel::product.create',['category'=>$category]);
     }
 
     /**
@@ -46,14 +47,14 @@ class PageController extends Controller
         ]);
         $imageName = uniqid() . time() . '.' . $request->image->extension();
         $request->image->move(public_path('images', $imageName));
-        $cat = new Page();
+        $cat = new Product();
         $cat->title = $validate['title'];
         $cat->description = $validate['description'];
         $cat->price = $validate['price'];
         $cat->cat_id = $validate['cat_id'];
         $cat->image = $imageName;
         $cat->save();
-        return redirect()->route('admin.page.index')->with('success', 'page created');
+        return redirect()->route('admin.product.index')->with('success', 'product created');
     }
 
     /**
@@ -71,10 +72,10 @@ class PageController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit(Page $page)
+    public function edit(Product $product)
     {
         $category = Category::all();
-        return view('adminpanel::page.edit',['page'=>$page,'category' => $category]);
+        return view('adminpanel::page.edit',['product'=>$product,'category' => $category]);
     }
 
     /**
@@ -83,7 +84,7 @@ class PageController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, Page $page)
+    public function update(Request $request, Product $product)
     {
           $validate = $request->validate([
             'title' => 'required',
@@ -94,13 +95,13 @@ class PageController extends Controller
         ]);
         $imageName = uniqid() . time() . '.' . $request->image->extension();
         $request->image->move(public_path('images', $imageName));
-        $page->title = $validate['title'];
-        $page->description = $validate['description'];
-        $page->price = $validate['price'];
-        $page->image = $imageName;
-        $page->cat_id = $validate['cat_id'];
-        $page->save();
-        return redirect()->route('admin.page.index')->with('success', 'page created');
+        $product->title = $validate['title'];
+        $product->description = $validate['description'];
+        $product->price = $validate['price'];
+        $product->image = $imageName;
+        $product->cat_id = $validate['cat_id'];
+        $product->save();
+        return redirect()->route('admin.product.index')->with('success', 'product created');
     }
 
     /**
@@ -108,9 +109,9 @@ class PageController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy(Page $page)
+    public function destroy(Product $product)
     {
-        $page->delete();
-        return redirect()->route('admin.page.index')->with('success', 'page delete');
+        $product->delete();
+        return redirect()->route('admin.product.index')->with('success', 'product delete');
     }
 }

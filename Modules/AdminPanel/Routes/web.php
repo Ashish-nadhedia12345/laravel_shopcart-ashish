@@ -11,10 +11,11 @@
 |
 */
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 use Modules\AdminPanel\Http\Controllers\CategoryController;
-use Modules\AdminPanel\Http\Controllers\PageController;
+
 
 Route::group([
     'prefix' => 'adminpanel',
@@ -35,14 +36,14 @@ function() {
 
 
      //all page route
-     Route::get('/page',[PageController::class,'index'])->name('admin.page.index');
+     Route::get('/product',[ProductController::class,'index'])->name('admin.product.index');
      //create
-     Route::get('/page/create',[PageController::class,'create'])->name('admin.page.create');
-     Route::post('/page/create',[PageController::class,'store'])->name('admin.page.store');
+     Route::get('/product/create',[ProductController::class,'create'])->name('admin.product.create');
+     Route::post('/product/create',[ProductController::class,'store'])->name('admin.product.store');
      //edit
-     Route::get('/page/edit/{page}',[PageController::class,'edit'])->name('admin.page.edit');
-     Route::patch('/page/edit/{page}',[PageController::class,'update'])->name('admin.page.update');
+     Route::get('/product/edit/{product}',[ProductController::class,'edit'])->name('admin.product.edit');
+     Route::patch('/product/edit/{product}',[ProductController::class,'update'])->name('admin.product.update');
      //delete
-     Route::delete('/page/delete/{page}',[PageController::class,'destroy'])->name('admin.page.delete');
+     Route::delete('/product/delete/{product}',[ProductController::class,'destroy'])->name('admin.product.delete');
 
 });
