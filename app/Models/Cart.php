@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Cart extends Model
 {
@@ -31,5 +32,9 @@ class Cart extends Model
         $result = Cart::selectRaw('sum(price * qty) as total')->where('user_id', $userID)->first();
         $total = $result['total'];
         return $total;
+    }
+
+    public static function emptyCart($userID){
+        DB::table('carts')->where('user_id', $userID)->delete();
     }
 }

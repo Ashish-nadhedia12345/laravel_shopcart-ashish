@@ -23,20 +23,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[CategoryController::class,'index'])->name('root');
-Route::get('/home',[CategoryController::class,'index'])->name('home');
+Route::get('/', [CategoryController::class, 'index'])->name('root');
+Route::get('/home', [CategoryController::class, 'index'])->name('home');
 Auth::routes();
 
 Route::get('/category/{category?}', [CategoryController::class, 'index'])->name('category.index');
 Route::get('/product/{product}', [ProductController::class, 'index'])->name('product.index');
 Route::post('/addcart/{id}', [CartController::class, 'addcart']);
-Route::get('/showcart', [CartController::class, 'showcart']);
+Route::get('/showcart', [CartController::class, 'showcart'])->name('showcart');
 Route::get('/delete/{id}', [CartController::class, 'dataDelete']);
-Route::get('/address',[AddressController::class, 'index'])->name('address.index');
 
-Route::get('/address/create',[AddressController::class, 'create'])->name('address.create');;
-Route::post('/address/create',[AddressController::class, 'store'])->name('address.store');;
-Route::delete('/address/delete/{address}',[AddressController::class, 'destroy'])->name('address.delete');
 
-Route::get('/order/review',[OrderController::class, 'review'])->name('order.review');
-Route::get('/payment/step1/{order}',[PaymentController::class, 'step1'])->name('payment.step1');
+Route::get('/order/review', [OrderController::class, 'review'])->name('order.review');
+
+Route::group(['middleware', 'auth'], function () {
+    Route::get('/address', [AddressController::class, 'index'])->name('address.index');
+    Route::get('/address/create', [AddressController::class, 'create'])->name('address.create');;
+    Route::post('/address/create', [AddressController::class, 'store'])->name('address.store');;
+    Route::delete('/address/delete/{address}', [AddressController::class, 'destroy'])->name('address.delete');
+    Route::get('/payment/step1/{order}', [PaymentController::class, 'step1'])->name('payment.step1');
+    Route::match(['get','post'],'/payment/response/{order}', [PaymentController::class, 'response'])->name('payment.response');
+});
