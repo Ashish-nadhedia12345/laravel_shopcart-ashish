@@ -1,0 +1,16 @@
+table{
+    border-spacing: 5px;
+    width: 100%;
+
+}
+
+td, th {
+    border: 1px solid black;
+    padding: 5px;
+    vertical-align: top;
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}

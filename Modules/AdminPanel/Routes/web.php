@@ -15,6 +15,7 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 use Modules\AdminPanel\Http\Controllers\CategoryController;
+use Modules\AdminPanel\Http\Controllers\OrderController;
 
 
 Route::group([
@@ -45,5 +46,10 @@ function() {
      Route::patch('/product/edit/{product}',[ProductController::class,'update'])->name('admin.product.update');
      //delete
      Route::delete('/product/delete/{product}',[ProductController::class,'destroy'])->name('admin.product.delete');
+
+     // order routes
+     Route::get('/order/index',[OrderController::class, 'index'])->name('admin.order.index');
+     Route::post('/order/update',[OrderController::class, 'update'])->name('admin.order.update');
+     Route::get('/order/invoice/{order}',[OrderController::class, 'invoice'])->name('admin.order.invoice');
 
 });

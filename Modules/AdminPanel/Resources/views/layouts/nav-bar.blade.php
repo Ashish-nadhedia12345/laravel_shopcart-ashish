@@ -35,15 +35,25 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i>Page<span
+                    <a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i>Orders<span
                             class="sidebar-collapse-icon ti-angle-down"></span>
                     </a>
                     <ul>
                         <li>
-                            <a href="{{ route('admin.page.create') }}">Create New</a>
+                            <a href="{{ route('admin.order.index') }}">List All</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i>Product<span
+                            class="sidebar-collapse-icon ti-angle-down"></span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="{{ route('admin.product.create') }}">Create New</a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.page.index') }}">List All</a>
+                            <a href="{{ route('admin.product.index') }}">List All</a>
                         </li>
                     </ul>
                 </li>

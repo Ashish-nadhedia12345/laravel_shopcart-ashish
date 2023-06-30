@@ -10,7 +10,7 @@ class Order extends Model
     use HasFactory;
     protected $fillable = ['user_id', 'address_id', 'amount', 'payment_status', 'order_status'];
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
@@ -45,7 +45,7 @@ class Order extends Model
         if ($orderIDExists) {
             $orderID = $orderIDExists->id;
             // update cart items in order details table based on orderID +  update order table total
-            // return order id            
+            // return order id
             OrderDetail::where('order_id', $orderID)->delete();
             $carts = Cart::where('user_id', $userID)->get();
             foreach ($carts as $row) {
@@ -56,7 +56,7 @@ class Order extends Model
                 $orderDetail->title = $product->title;
                 $orderDetail->qty = $row->qty;
                 $orderDetail->price = $row->price;
-                $orderDetail->save();               
+                $orderDetail->save();
             }
             $order= Order::find($orderID);
             $order->amount = (Cart::getCartTotal($userID) + $shippintAmt);
