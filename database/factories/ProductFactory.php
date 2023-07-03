@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Page>
  */
-class PageFactory extends Factory
+class ProductFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,9 +19,9 @@ class PageFactory extends Factory
     {
         return [
             'cat_id' => Category::all()->random()->id,
-            'title' => fake()->text(10),
-            'description' =>fake()->text(500),
-            'price' => '150',
+            'title' => fake()->sentence(),
+            'description' => fake()->sentence(500),
+            'price' => rand(100, 1000),
             'image' => 'noimg.png',
         ];
     }

@@ -5,7 +5,7 @@ $orderID = $order->id;
 $key = 'fcZxr6';
 $salt = 'xBJpv25HH6q8saJOimBllTHPpVj5iHno';
 $mid = 'wIEUUgWk0j';
-$amount = $order->amount;
+$amount = $order->coupon_code !='' ? $order->discounted_amount : $order->amount;
 $productInfo = 'Purchase Items';
 $firstname = "Asihsh";
 $lastname = "Nadhediya";
@@ -15,17 +15,20 @@ $text = $key . '|' . $order->id . '|' . $amount . '|' . $productInfo . '|' . $fi
 $hash = hash("sha512", $text);
 @endphp
 <form action='https://test.payu.in/_payment' method='post' enctype="multipart/form-data">
-    <input type="hidden" name="key" value="{{ $key }}" />
-    <input type="hidden" name="txnid" value="{{ $order->id }}" />
-    <input type="hidden" name="productinfo" value="{{ $productInfo }}" />
-    <input type="hidden" name="amount" value="{{ $amount }}" />
-    <input type="hidden" name="email" value="{{ $email }}" />
-    <input type="hidden" name="firstname" value="{{ $firstname }}" />
-    <input type="hidden" name="lastname" value="{{ $lastname }}" />
-    <input type="hidden" name="surl" value="{{ route('payment.response',$order->id) }}" />
-    <input type="hidden" name="furl" value="{{ route('payment.response',$order->id) }}" />
-    <input type="hidden" name="phone" value="{{ $phone }}" />
-    <input type="hidden" name="hash" value="{{ $hash }}" />
-    <input type="submit" value="Proceed To Payment">
+    <input type="text" name="key" value="{{ $key }}" />
+    <input type="text" name="txnid" value="{{ $order->id }}" />
+    <input type="text" name="productinfo" value="{{ $productInfo }}" />
+    <input type="text" name="amount" value="{{ $amount }}" />
+    <input type="text" name="email" value="{{ $email }}" />
+    <input type="text" name="firstname" value="{{ $firstname }}" />
+    <input type="text" name="lastname" value="{{ $lastname }}" />
+    <input type="text" name="surl" value="{{ route('payment.response',$order->id) }}" />
+    <input type="text" name="furl" value="{{ route('payment.response',$order->id) }}" />
+    <input type="text" name="phone" value="{{ $phone }}" />
+    <input type="text" name="hash" value="{{ $hash }}" />
+    <p class="text-right">
+        <input type="submit" class="btn btn-primary" value="Proceed To Payment">
+    </p>
+
 </form>
 @endsection

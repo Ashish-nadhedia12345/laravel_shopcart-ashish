@@ -88,4 +88,40 @@ class Order extends Model
         }
         return $orderID;
     }
+
+    /**
+     * Apply coupon and return bool
+     *
+     * @param Order $order
+     * @param string $code
+     * @return boolean
+     */
+    public static function applyCoupon(Order $order, string $code) : bool{
+        if($code != ''){
+            // find coupon
+            $coupon = Coupon::where('code', $code)->first();
+            // if coupon found and is valid date is grater than todays date
+            if($coupon && $coupon->valid_upto > date('Y-m-d')){
+                // apply coupon
+                $order->coupon_title = $coupon->title;
+                $order->coupon_type = $coupon->type;
+                $order->coupon_code = $code;
+                $order->coupon_amount = $coupon->amount;
+                if($coupon->type == 'fixed'){
+                    $order->discounted_amount = $order->amount - $coupon->amount;
+                } else {
+                    $amt = ($order->amount * $coupon->amount) / 100;
+                    $order->discounted_amount = $order->amount - $amt;
+                }
+
+                //dd($order);
+                $order->save();
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+
+    }
 }

@@ -5,7 +5,9 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Category;
+use App\Models\Coupon;
 use App\Models\Page;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,14 +19,30 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        \App\Models\User::factory()->create([
+        /*\App\Models\User::factory()->create([
              'name' => 'Admin',
              'email' => 'admin@localhost.com',
              'role' => 'Admin'
-        ]);
+        ]);*/
        // Category::factory(20)->create();
 
-       \App\Models\User::factory(10)->create();
-       //Page::factory(50)->create();
+       //\App\Models\User::factory(10)->create();
+       //Category::factory(10)->create();
+       //Product::factory(50)->create();
+       Coupon::create([
+        'title' => 'Sale 50% OFF',
+        'code' => '50OFF',
+        'amount' => '50',
+        'type' => 'percent',
+        'valid_upto' => '2023-12-31'
+       ]);
+
+       Coupon::create([
+        'title' => 'Sale FLAT 100',
+        'code' => '100OFF',
+        'amount' => '100',
+        'type' => 'fixed',
+        'valid_upto' => '2023-12-31'
+       ]);
     }
 }

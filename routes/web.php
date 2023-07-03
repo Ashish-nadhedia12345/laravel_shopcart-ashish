@@ -34,7 +34,7 @@ Route::get('/showcart', [CartController::class, 'showcart'])->name('showcart');
 Route::get('/delete/{id}', [CartController::class, 'dataDelete']);
 
 
-Route::get('/order/review', [OrderController::class, 'review'])->name('order.review');
+
 
 Route::group(['middleware', 'auth'], function () {
     Route::get('/address', [AddressController::class, 'index'])->name('address.index');
@@ -43,4 +43,7 @@ Route::group(['middleware', 'auth'], function () {
     Route::delete('/address/delete/{address}', [AddressController::class, 'destroy'])->name('address.delete');
     Route::get('/payment/step1/{order}', [PaymentController::class, 'step1'])->name('payment.step1');
     Route::match(['get','post'],'/payment/response/{order}', [PaymentController::class, 'response'])->name('payment.response');
+
+    Route::get('/order/review', [OrderController::class, 'review'])->name('order.review');
+    Route::get('/order/applyCoupon/{order}',[OrderController::class, 'applyCoupon'])->name('order.applyCoupon');
 });
