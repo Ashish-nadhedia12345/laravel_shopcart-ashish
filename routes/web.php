@@ -46,4 +46,6 @@ Route::group(['middleware', 'auth'], function () {
 
     Route::get('/order/review', [OrderController::class, 'review'])->name('order.review');
     Route::get('/order/applyCoupon/{order}',[OrderController::class, 'applyCoupon'])->name('order.applyCoupon');
+    Route::get('/orderhistory/index', [OrderController::class, 'index'])->name('orderhistory.index');
+    Route::get('/orderhistory/invoice/{order}',[OrderController::class, 'invoice'])->name('orderhistory.invoice');
 });

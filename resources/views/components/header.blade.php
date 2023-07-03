@@ -15,6 +15,11 @@
                         Account</button>
                     <div class="dropdown-menu dropdown-menu-right">
                         @auth
+                            @can('isAdmin')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('/adminpanel') }}">Admin Panel</a>
+                                </li>
+                            @endcan
                             <form action="{{ route('logout') }}" method="post" id="logoutForm">
                                 @csrf
                                 <a href="javascript:void;" onclick="$('#logoutForm').submit()"><button class="dropdown-item"
@@ -118,16 +123,16 @@
                                 <a href="{{ url('/address/create') }}" class="dropdown-item">Checkout</a>
                             </div>
                         </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="{{route('orderhistory.index')}}" class="nav-item nav-link">Order History</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
 
 
-                            <a href="{{ route('showcart') }}" class="btn px-0 ml-3">
-                                <i class="fas fa-shopping-cart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle"
-                                    style="padding-bottom: 2px;">{{ $cartItemCount }}</span>
-                            </a>
+                        <a href="{{ route('showcart') }}" class="btn px-0 ml-3">
+                            <i class="fas fa-shopping-cart text-primary"></i>
+                            <span class="badge text-secondary border border-secondary rounded-circle"
+                                style="padding-bottom: 2px;">{{ $cartItemCount }}</span>
+                        </a>
 
                     </div>
 
