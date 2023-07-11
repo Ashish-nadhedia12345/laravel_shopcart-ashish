@@ -21,6 +21,19 @@
                       </li>
                   </ul>
               </li>
+              <li>
+                <a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i>Coupon<span
+                        class="sidebar-collapse-icon ti-angle-down"></span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="{{ route('admin.coupon.create') }}">Create New</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.coupon.index') }}">List All</a>
+                    </li>
+                </ul>
+            </li>
                 <li>
                     <a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i>Category<span
                             class="sidebar-collapse-icon ti-angle-down"></span>
@@ -57,6 +70,9 @@
                         </li>
                     </ul>
                 </li>
+
+                
+                
                 <li>
                     <a href="../documentation/index.html">
                         <i class="ti-file"></i> Documentation</a>

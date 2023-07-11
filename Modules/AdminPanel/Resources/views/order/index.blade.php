@@ -33,7 +33,6 @@
                 <form name="updateStatus" id="updateStatus" method="post" action="{{ route('admin.order.update')}}">
                     @csrf
                     <input type="hidden" name="order_id" value="{{ $order->id }}">
-
                     <div class="row">
                         <div class="col-4">
                             <select name="payment_status" id="" class="form-control">

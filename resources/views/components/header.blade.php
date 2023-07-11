@@ -28,7 +28,7 @@
                         @else
                             <a href="{{ route('login') }}"><button class="dropdown-item" type="button">Sign
                                     in</button></a>
-                            <a href="{{ route('logout') }}">
+                            <a href="{{ route('register') }}">
                                 <button class="dropdown-item" type="button">Sign up</button></a>
                         @endauth
 
@@ -123,7 +123,7 @@
                                 <a href="{{ url('/address/create') }}" class="dropdown-item">Checkout</a>
                             </div>
                         </div>
-                        <a href="{{route('orderhistory.index')}}" class="nav-item nav-link">Order History</a>
+                        <a href="{{ route('orderhistory.index') }}" class="nav-item nav-link">Order History</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
 
