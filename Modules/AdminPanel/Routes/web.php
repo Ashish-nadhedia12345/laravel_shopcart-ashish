@@ -15,6 +15,7 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 use Modules\AdminPanel\Http\Controllers\CategoryController;
+use Modules\AdminPanel\Http\Controllers\CouponController;
 use Modules\AdminPanel\Http\Controllers\OrderController;
 
 
@@ -51,5 +52,9 @@ function() {
      Route::get('/order/index',[OrderController::class, 'index'])->name('admin.order.index');
      Route::post('/order/update',[OrderController::class, 'update'])->name('admin.order.update');
      Route::get('/order/invoice/{order}',[OrderController::class, 'invoice'])->name('admin.order.invoice');
-
+     //coupon route
+     Route::get('/coupon',[CouponController::class,'index'])->name('admin.coupon.index');
+     //create
+     Route::get('/coupon/create',[CouponController::class,'create'])->name('admin.coupon.create');
+     Route::post('/coupon/create',[CouponController::class,'store'])->name('admin.coupon.store');
 });

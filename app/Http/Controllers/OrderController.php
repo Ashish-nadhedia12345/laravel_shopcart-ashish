@@ -27,6 +27,24 @@ class OrderController extends Controller
         return view('order.review',['order' => $order,'orderDetail' => $orderDetail]);
 
     }
+    public function index(Order $order)
+    {
+        if(isset(Auth::user()->id)){
+            $orders = Order::where('user_id',Auth::user()->id)->get();
+            return view('orderhistory.index',['orders' => $orders ,'order'=> $order]);
+        } else{
+            return redirect('login');
+        }
+        
+    }
+    public function invoice(Order $order){
+       $mpdf = new \Mpdf\Mpdf();
+       $stylesheet = file_get_contents(public_path().'/css/pdf.css');
+       $mpdf->WriteHTML($stylesheet,\Mpdf\HTMLParserMode::HEADER_CSS);
+       $content = view('orderhistory.invoice',['order' => $order]);
+       $mpdf->WriteHtml($content);
+       $mpdf->output();
+    }
 
     public function applyCoupon(Request $request, Order $order){
         $code = $request->input('coupon_code');

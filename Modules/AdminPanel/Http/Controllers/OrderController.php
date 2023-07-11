@@ -32,7 +32,6 @@ class OrderController extends Controller
         $order->payment_status = $paymentStatus;
         $order->order_status = $orderStatus;
         $order->save();
-
         return redirect()->route('admin.order.index')->with('success','Order Updated');
     }
 

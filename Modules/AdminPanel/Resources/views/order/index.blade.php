@@ -14,8 +14,8 @@
             <th>
                 <div class="row">
                     <div class="col-4">Change Payment Status</div>
-                    <div class="col-4">Chagen Order Status</div>
-                    <div class="col-4"></div>
+                    <div class="col-4">Change Order Status</div>
+                    <div class="col-4">Action</div>
                 </div>
             </th>
         </tr>
@@ -33,7 +33,6 @@
                 <form name="updateStatus" id="updateStatus" method="post" action="{{ route('admin.order.update')}}">
                     @csrf
                     <input type="hidden" name="order_id" value="{{ $order->id }}">
-
                     <div class="row">
                         <div class="col-4">
                             <select name="payment_status" id="" class="form-control">

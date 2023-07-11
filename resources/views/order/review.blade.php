@@ -26,7 +26,7 @@
             <tr>
                 <td colspan="4" class="text-right">Grand Total</td>
                 <td>
-                    @if($order->coupon_code !== '')
+                    @if($order->coupon_code !== NULL)
                     <strike class="text-danger">${{ $order->amount}}</strike> &nbsp; <span class="text-success">${{ $order->discounted_amount }}</span>
                     @else
                     ${{ $order->amount}}
@@ -41,7 +41,7 @@
                         @csrf
                         <input type="hidden" name="address" value="{{ $order->address_id }}">
                         <div class="row">
-                            <div class="col-6"> <input type="text" name="coupon_code" value="{!! $order->coupon_code !== '' ? $order->coupon_code : '' !!}"/></div>
+                            <div class="col-6"> <input type="text" name="coupon_code" value="{!! $order->coupon_code !== NULL ? $order->coupon_code : '' !!}"/></div>
                             <div class="col-6"><button type="submit" class="btn btn-primary">Apply</button></div>
                         </div>
 
