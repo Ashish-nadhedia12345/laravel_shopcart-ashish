@@ -21,7 +21,7 @@
             @endforeach
             <tr>
                 <td colspan="4" class="text-right">Shipping</td>
-                <td>${{ env('SHIPPING_AMT') }}</td>
+                <td>${{ $shippingPrice }}</td>
             </tr>
             <tr>
                 <td colspan="4" class="text-right">Grand Total</td>

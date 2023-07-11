@@ -39,7 +39,9 @@ class Order extends Model
          * 4. return order id
          */
         $orderID = 0;
-        $shippintAmt = env('SHIPPING_AMT');
+        $weight =  Cart::getCartWeight(auth()->user()->id);
+        $shippintAmt = ShippingRate::getShippingRates($weight);
+
 
         $orderIDExists = Order::where('user_id', $userID)->where('payment_status', 'unpaid')->first();
         if ($orderIDExists) {

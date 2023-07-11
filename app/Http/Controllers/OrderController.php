@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\ShippingRate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,12 +20,15 @@ class OrderController extends Controller
         $orderID = Order::createOrder($addressID, auth()->user()->id);
         $order = Order::where('id', $orderID)->first();
         // apply coupon if any already added to order
-        if($$order->coupon_code != null){
+        if($order->coupon_code != null){
             Order::applyCoupon($order, $order->coupon_code);
         }
 
+        $weight =  Cart::getCartWeight(auth()->user()->id);
+        $shippingPrice = ShippingRate::getShippingRates($weight);
+
         $orderDetail = OrderDetail::where('order_id', $orderID)->get();
-        return view('order.review',['order' => $order,'orderDetail' => $orderDetail]);
+        return view('order.review',['order' => $order,'orderDetail' => $orderDetail, 'shippingPrice' => $shippingPrice]);
 
     }
     public function index(Order $order)
@@ -35,7 +39,7 @@ class OrderController extends Controller
         } else{
             return redirect('login');
         }
-        
+
     }
     public function invoice(Order $order){
        $mpdf = new \Mpdf\Mpdf();

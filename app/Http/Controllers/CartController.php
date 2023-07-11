@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\ShippingRate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,8 +32,10 @@ class CartController extends Controller
         if (Auth::user()) {
             $user_id = Auth::user()->id;
             $carts = Cart::where('user_id', $user_id)->get();
+            $weight =  Cart::getCartWeight($user_id);
+            $shipping = ShippingRate::getShippingRates($weight);
         }
-        return view('cart.index', ['carts' => $carts,'shippingPrice' => 10]);
+        return view('cart.index', ['carts' => $carts, 'shippingPrice' => $shipping]);
     }
     public function dataDelete($id)
     {

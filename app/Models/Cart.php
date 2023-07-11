@@ -37,4 +37,13 @@ class Cart extends Model
     public static function emptyCart($userID){
         DB::table('carts')->where('user_id', $userID)->delete();
     }
+
+    public static function getCartWeight(int $userID) : float{
+        $cartItems = Cart::where("user_id", $userID)->get();
+        $weight = 0.00;
+        foreach($cartItems as $pro){
+            $weight += $pro->product->weight;
+        }
+        return $weight;
+    }
 }

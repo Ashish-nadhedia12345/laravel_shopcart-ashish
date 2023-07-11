@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\Page;
 use App\Models\Product;
+use App\Models\ShippingRate;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -29,7 +30,7 @@ class DatabaseSeeder extends Seeder
        //\App\Models\User::factory(10)->create();
        //Category::factory(10)->create();
        //Product::factory(50)->create();
-       Coupon::create([
+       /*Coupon::create([
         'title' => 'Sale 50% OFF',
         'code' => '50OFF',
         'amount' => '50',
@@ -43,6 +44,13 @@ class DatabaseSeeder extends Seeder
         'amount' => '100',
         'type' => 'fixed',
         'valid_upto' => '2023-12-31'
+       ]);*/
+       ShippingRate::create([
+        '100g' => 10.50,
+        '300g' => 20.50,
+        '600g' => 30.50,
+        '900g' => 40.50,
+        'above_1000g' => 100
        ]);
     }
 }
