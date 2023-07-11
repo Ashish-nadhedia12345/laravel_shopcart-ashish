@@ -19,7 +19,10 @@ class OrderController extends Controller
         $orderID = Order::createOrder($addressID, auth()->user()->id);
         $order = Order::where('id', $orderID)->first();
         // apply coupon if any already added to order
-        Order::applyCoupon($order, '');
+        if($$order->coupon_code != null){
+            Order::applyCoupon($order, $order->coupon_code);
+        }
+
         $orderDetail = OrderDetail::where('order_id', $orderID)->get();
         return view('order.review',['order' => $order,'orderDetail' => $orderDetail]);
 
